@@ -8,20 +8,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ This is a Test score program that allows the user to input various text scores from 0 to 100
+ As an integer and calculates the average score in the set
+ Author: Vu Tran*/
+
 namespace Score_Calculator
 {
     public partial class frmScoreCalculator : Form
+
     {
+        // Sets up the windows form GUI components
         public frmScoreCalculator()
         {
             InitializeComponent();
         }
+        // Initiallizes an empty list to store test scores
+        // Made it a global variable that can be accessed by any method in the program
         List<int> scores = new List<int>();
+        
         private void btnAddScore_Click(object sender, EventArgs e)
         {
+            // Automatically highlights the textbox for fast data entry, over rights the previous value
+            // Got this from https://stackoverflow.com/questions/2151410/auto-highlight-text-in-a-textbox-control
+            txtScore.SelectionStart = 0;
+            txtScore.SelectionLength = txtScore.Text.Length;
+
+            // Initializes the count, total, and averages
             int scoreCount = 0;
             int scoreTotal = 0;
             int scoreAverage = 0;
+
             try
             {
                 if (IsValidData())
@@ -40,6 +57,7 @@ namespace Score_Calculator
 
                         scoreAverage = scoreTotal / scoreCount;
                         lblAverage.Text = scoreAverage.ToString();
+                        txtScore.Focus();
                     }
                 }
             }
