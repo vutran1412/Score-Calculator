@@ -31,7 +31,7 @@ namespace Score_Calculator
             {
                 scoreCount++;
                 lblScoreCount.Text = scoreCount.ToString();
-
+                
                 scoreTotal += s;
                 lblScoreTotal.Text = scoreTotal.ToString();
 
