@@ -39,24 +39,34 @@ namespace Score_Calculator
             int scoreTotal = 0;
             int scoreAverage = 0;
 
+            // Try block to catch any exceptions
             try
             {
+                // if data is valid
                 if (IsValidData())
                 {
                     int score = Convert.ToInt32(txtScore.Text);
 
+                    // Adds new score to the List
                     scores.Add(score);
 
+                    // Loop to iterate through the entire list
                     foreach (int s in scores)
                     {
+                        // Counter
                         scoreCount++;
+                        // Display the current score count
                         lblScoreCount.Text = scoreCount.ToString();
 
+                        // Totals up the scores
                         scoreTotal += s;
+                        // Displays the running total
                         lblScoreTotal.Text = scoreTotal.ToString();
-
+                        // Calculate average score
                         scoreAverage = scoreTotal / scoreCount;
+                        // Displays the average score
                         lblAverage.Text = scoreAverage.ToString();
+                        // Refocus on the txtscore textbox
                         txtScore.Focus();
                     }
                 }
@@ -70,6 +80,7 @@ namespace Score_Calculator
             
         }
 
+        // Method that uses nestled statements used to validate user input
         public bool IsValidData()
         {
             return
@@ -78,6 +89,7 @@ namespace Score_Calculator
                 IsWithinRange(txtScore, "Test Score", 0, 100);
         }
 
+        // method to check for any empty textboxes
         public bool IsPresent(TextBox textBox, string name)
         {
             if (textBox.Text == "")
@@ -89,6 +101,7 @@ namespace Score_Calculator
             return true;
         }
 
+        // Method to check to see if the text is an integer
         public bool IsInteger(TextBox textBox, String name)
         {
             int number = 0;
@@ -104,6 +117,7 @@ namespace Score_Calculator
             }
         }
 
+        // Method to check to see if the number is acceptable range
         public bool IsWithinRange(TextBox textbox, string name, int min, int max)
         {
             int number = Convert.ToInt16(textbox.Text);
@@ -117,7 +131,7 @@ namespace Score_Calculator
             return true;
         }
 
-
+        // Method to Display the scores in a pop-up message box
         private void btnDisplayScores_Click(object sender, EventArgs e)
         {
             string scoreList = "";
@@ -128,6 +142,7 @@ namespace Score_Calculator
             MessageBox.Show(scoreList, "Scores");
         }
 
+        // Clears all input fields
         private void btnClearScores_Click(object sender, EventArgs e)
         {
             scores.Clear();
@@ -138,6 +153,7 @@ namespace Score_Calculator
 
         }
 
+        // Exits the program
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
